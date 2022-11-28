@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { inject } from 'inversify';
 import { controller, httpPost } from 'inversify-express-utils';
-import { TYPES } from '../../../core/inversify/types.inversify';
+import { TYPES } from '../../../core/inversify/types.di';
 import { CreateUserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
 

@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 
 export interface IUser{
     name: string,
-    emai: string
+    email: string
 }
 
 const UserSchema = new Schema({

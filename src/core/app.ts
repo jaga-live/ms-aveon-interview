@@ -21,13 +21,13 @@ export class App{
 			app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 				if (err instanceof HttpException) {
-					res.status(err.statusCode).json({ error: err.message });
+					return res.status(err.statusCode).json({ error: err.message });
 				} else if (err instanceof ValidationException) {
-					res.status(err.statusCode).json({ error: 'Validation Exception', errorInfo: err.error.details});
+					return res.status(400).json({ error: 'Validation Exception', errorInfo: err.error.details});
 				}
 				else {
 					console.log(err);
-					res.status(500).json({ error: 'Internal Server Exception' });
+					return res.status(500).json({ error: 'Internal Server Exception' });
 				}
 			});
 		});

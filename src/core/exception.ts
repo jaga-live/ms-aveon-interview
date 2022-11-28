@@ -11,9 +11,7 @@ export class HttpException extends Error{
 
 export class ValidationException extends Error{
 	constructor(
-		public readonly message: string,
 		public readonly error: any,
-		public readonly statusCode: number
 	) {
 		super();
 	}
