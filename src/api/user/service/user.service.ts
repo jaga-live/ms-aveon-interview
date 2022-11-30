@@ -14,6 +14,7 @@ export class UserService{
 		@inject(TYPES.AuthRepository) private readonly authRepo: AuthRepository
 	) { }
     
+	///Create User
 	async create_user(payload: CreateUserDto) {
 		const { email, password } = payload;
         
@@ -31,6 +32,12 @@ export class UserService{
 		});
 
 		return createUser;
+	}
+
+	///Get User Profile
+	async profile(userId: Types.ObjectId) {
+		const user = await this.userRepo.findById(userId);
+		return user;
 	}
 
 }
