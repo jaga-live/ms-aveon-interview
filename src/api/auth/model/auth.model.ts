@@ -3,7 +3,8 @@ import { model, Schema, Types } from 'mongoose';
 
 interface IAuth{
     userId: string;
-    password: string;
+	password: string;
+	jwtSession: string[]
 }
 
 const AuthSchema = new Schema({
@@ -12,7 +13,8 @@ const AuthSchema = new Schema({
 		ref: 'users',
 		unique: true,
 	},
-	password: String
+	password: String,
+	jwtSession: Array<String>
 });
 
 export default model<IAuth>('auth', AuthSchema);

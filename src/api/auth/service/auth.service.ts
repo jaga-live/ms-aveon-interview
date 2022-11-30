@@ -31,6 +31,7 @@ export class AuthService implements IAuthService{
 		
 		////Create Session
 		const sessionId = v4();
+
 		////Access Token
 		const accessToken = jwt.sign({
 			userId: user._id,
@@ -44,6 +45,11 @@ export class AuthService implements IAuthService{
 			userId: user._id,
 			sessionId
 		}, this.JWT_SECRET, {expiresIn: '120s'});
+
+		///Update Session
+		await this.authRepo.update(auth._id, {
+			$push: { jwtSession: sessionId }
+		});
 
 		return {
 			status: 'ok',
