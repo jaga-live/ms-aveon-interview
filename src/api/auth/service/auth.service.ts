@@ -38,13 +38,13 @@ export class AuthService implements IAuthService{
 			email,
 			role: user.role,
 			sessionId
-		}, this.JWT_SECRET, { expiresIn: '60s' });
+		}, this.JWT_SECRET, { expiresIn: '30m' });
 
 		////Refresh Token
 		const refreshToken = jwt.sign({
 			userId: user._id,
 			sessionId
-		}, this.JWT_SECRET, {expiresIn: '120s'});
+		}, this.JWT_SECRET, {expiresIn: '30m'});
 
 		///Update Session
 		await this.authRepo.update(auth._id, {

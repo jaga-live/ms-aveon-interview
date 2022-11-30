@@ -5,7 +5,9 @@ import { Types } from 'mongoose';
 import { Req } from '../../../core/custom_types/custom.types';
 import { TYPES } from '../../../core/inversify/types.di';
 import { AuthGuard } from '../../auth/guards/auth.guard';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 import { CreateUserDto } from '../dto/user.dto';
+import { ROLES } from '../enum/roles';
 import { UserService } from '../service/user.service';
 
 @controller('/user')
@@ -23,7 +25,9 @@ export class UserController{
 	}
 
 	///User Profile
-	@httpGet('/profile', AuthGuard)
+	@httpGet('/profile',
+		AuthGuard,
+		RolesGuard([ROLES.ADMIN, ROLES.HR]))
     async profile(req: Req) {
     	const { userId } = req.userData;
     	return this.userService.profile(new Types.ObjectId(userId));
