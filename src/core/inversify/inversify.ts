@@ -7,7 +7,7 @@ const container = new Container({
 
 
 ///Import Controller
-import '../../api/user/controller/user.controller';
+import './global.controller';
 import { UserRepository } from '../../api/user/repository/user.repository';
 import { TYPES } from './types.di';
 import { UserService } from '../../api/user/service/user.service';
