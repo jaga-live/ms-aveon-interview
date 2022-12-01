@@ -4,6 +4,8 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import container from './inversify/inversify';
 import {Request, Response, NextFunction} from 'express';
 import { HttpException, ValidationException } from './exception';
+import * as swagger from 'swagger-express-ts';
+import './swagger.models';
 
 export class App{
 
@@ -14,6 +16,19 @@ export class App{
 		server.setConfig((app) => {
 			app.use(express.json());
 			app.use(cors());
+
+			//Swagger Config
+			app.use( '/api-docs/swagger', express.static( 'swagger' ) );
+			app.use('/api-docs/swagger/assets', express.static('node_modules/swagger-ui-dist'));
+			app.use( swagger.express({
+				definition : {
+					info : {
+						title : 'AVEON - Interview' ,
+						version : '1.0'
+					}
+				}
+			}));
+			
 		});
 
 		///Error Config
