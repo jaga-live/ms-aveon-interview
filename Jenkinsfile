@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Start Container') {
             steps {
-                sh 'docker run -p 5004:5000 -d --name ms-interview ms-interview'
+                sh 'docker run -p 5003:5000 -d --name ms-interview ms-interview'
             }
         }
 
