@@ -18,7 +18,7 @@ export class App{
 			app.use(cors());
 
 			//Swagger Config
-			app.use( '/api-docs/swagger', express.static( 'swagger' ) );
+			app.use( '/docs/api', express.static( 'swagger' ) );
 			app.use('/api-docs/swagger/assets', express.static('node_modules/swagger-ui-dist'));
 			app.use( swagger.express({
 				definition : {
