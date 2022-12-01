@@ -1,6 +1,5 @@
 import { model, Schema, Types } from 'mongoose';
 
-
 interface IAuth{
     userId: string;
 	password: string;
@@ -14,7 +13,7 @@ const AuthSchema = new Schema({
 		unique: true,
 	},
 	password: String,
-	jwtSession: Array<string>
+	jwtSession: Array<String>
 });
 
 export default model<IAuth>('auth', AuthSchema);
