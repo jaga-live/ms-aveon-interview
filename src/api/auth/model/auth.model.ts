@@ -13,7 +13,7 @@ const AuthSchema = new Schema({
 		unique: true,
 	},
 	password: String,
-	jwtSession: Array<String>
+	jwtSession: Array<string>
 });
 
 export default model<IAuth>('auth', AuthSchema);

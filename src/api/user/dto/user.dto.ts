@@ -1,16 +1,22 @@
 import Joi from 'joi';
+import { ApiModel, ApiModelProperty } from 'swagger-express-ts';
 import { HttpException, ValidationException } from '../../../core/exception';
 import { ROLES } from '../enum/roles';
 
-
+@ApiModel({name: 'CreateUser'})
 export class CreateUserDto{
-	constructor(
-        public name: string,
-		public email: string,
-		public role: string,
-        public password: string,
-	) { }
-    
+	@ApiModelProperty({ required: true, example: 'John Adam' })
+	public name: string;
+
+	@ApiModelProperty({ required: true, example: 'john@aveoninfotech.com' })
+	public email: string;
+
+	@ApiModelProperty({ required: true, example: 'HR' })
+	public role: string;
+
+	@ApiModelProperty({ required: true, example: 'password' })
+	public password: string;
+	
 	public static async validate(dto: CreateUserDto) {
 		if (!dto) return;
 
@@ -31,4 +37,16 @@ export class CreateUserDto{
 		return validate;
 	}
 
+}
+
+@ApiModel({name: 'User'})
+export class UserDto{
+	@ApiModelProperty({ required: true, example: 'John Adam' })
+	public name: string;
+
+	@ApiModelProperty({ required: true, example: 'john@aveoninfotech.com' })
+	public email: string;
+
+	@ApiModelProperty({ required: true, example: 'HR' })
+	public role: string;
 }
