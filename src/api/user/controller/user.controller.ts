@@ -27,7 +27,7 @@ export class UserController{
 			400: { description: 'Bad Payload' }
 		}
 	})
-    @httpPost('')
+	@httpPost('', AuthGuard, RolesGuard([ROLES.ADMIN]))
 	async createUser(req: Request) {
 		const validate =  await CreateUserDto.validate(req.body);
 		const createUser = await this.userService.create_user(validate);

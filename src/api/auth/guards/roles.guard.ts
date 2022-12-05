@@ -4,7 +4,8 @@ import { HttpException } from '../../../core/exception';
 
 export const RolesGuard = (roles: any) => {
 	return (req: Req, res: Response,next: NextFunction) => {
-		const currentUser = req.userData.role;
+		const currentUser = req.userData?.role;
+		if(!currentUser) throw new HttpException('Roles has no sufficient permissions', 403);
 		if (!roles.includes(currentUser)) throw new HttpException('Roles has no sufficient permissions', 403);
 		next();
 	};
