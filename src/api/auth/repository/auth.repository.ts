@@ -17,4 +17,6 @@ export class AuthRepository{
 	async update(_id: Types.ObjectId, expression: any) {
 		await Auth.updateOne({ _id }, { ...expression });
 	}
+
+	
 }

@@ -30,4 +30,13 @@ export class UserRepository implements IUserService{
 		const user = await User.findOne({ email });
 		return user;
 	}
+
+	///Update User
+	async update(userId: Types.ObjectId, payload: any) {
+		
+		await User.updateOne({ _id: userId }, {
+			$set: {...payload}
+			
+		});
+	}
 }

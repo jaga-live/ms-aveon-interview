@@ -1,11 +1,12 @@
 import { inject, injectable } from 'inversify';
 import { Types } from 'mongoose';
-import { hashSync } from 'bcrypt';
+import { compareSync, hashSync } from 'bcrypt';
 import { HttpException } from '../../../core/exception';
 import { TYPES } from '../../../core/inversify/types.di';
 import { AuthRepository } from '../../auth/repository/auth.repository';
 import { CreateUserDto } from '../dto/user.dto';
 import { UserRepository } from '../repository/user.repository';
+import { UpdateUserDto } from '../dto/update_user.dto';
 
 @injectable()
 export class UserService{
@@ -38,6 +39,27 @@ export class UserService{
 	async profile(userId: Types.ObjectId) {
 		const user = await this.userRepo.findById(userId);
 		return user;
+	}
+
+	///Update Profile
+	async update_profile(userId: Types.ObjectId, payload: UpdateUserDto) {
+		const user = await this.userRepo.findById(userId);
+		if (!user) throw new HttpException('User not found', 400);
+		
+		await this.userRepo.update(userId, payload);
+	}
+
+	async update_password(userId: Types.ObjectId, oldPassword: string, newPassword: string) {
+		const auth = await this.authRepo.findByUserId(userId);
+		if (!compareSync(oldPassword, auth.password)) throw new HttpException('Old password does not match', 400);
+		
+		const payload: any = {
+			$set: {
+				password: hashSync(newPassword, 12)
+			}
+		};
+		
+		await this.authRepo.update(auth._id, payload);
 	}
 
 }
