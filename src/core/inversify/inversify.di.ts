@@ -13,14 +13,18 @@ import { TYPES } from './types.di';
 import { UserService } from '../../api/user/service/user.service';
 import { AuthRepository } from '../../api/auth/repository/auth.repository';
 import { AuthService } from '../../api/auth/service/auth.service';
+import { CandidateService } from '../../api/candidate/service/candidate.service';
+import { CandidateRepository } from '../../api/candidate/repository/candidate.repository';
 
 ///Bindings
 ///Service
 container.bind<UserService>(TYPES.UserService).to(UserService);
 container.bind<AuthService>(TYPES.AuthService).to(AuthService);
+container.bind<CandidateService>(TYPES.CandidateService).to(CandidateService);
 
 ///Repository
 container.bind<UserRepository>(TYPES.UserRepository).to(UserRepository);
 container.bind<AuthRepository>(TYPES.AuthRepository).to(AuthRepository);
+container.bind<CandidateRepository>(TYPES.CandidateRepository).to(CandidateRepository);
 
 export default container;

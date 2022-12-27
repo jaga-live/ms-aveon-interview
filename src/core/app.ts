@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { InversifyExpressServer } from 'inversify-express-utils';
-import container from './inversify/inversify';
+import container from './inversify/inversify.di';
 import {Request, Response, NextFunction} from 'express';
 import { HttpException, ValidationException } from './exception';
 import * as swagger from 'swagger-express-ts';
