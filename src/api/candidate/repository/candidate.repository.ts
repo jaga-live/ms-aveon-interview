@@ -10,8 +10,8 @@ export class CandidateRepository{
     
 	///Create Single or Multiple
 	async create(payload: CreateCandidateDto | CreateCandidateDto[]): Promise<any> {
-		const candidate = await Candidate.insertMany(payload);
-		return candidate;
+		const candidate = new Candidate(payload);
+		return await candidate.save();
 	}
 
 	//Find by _id
@@ -22,7 +22,7 @@ export class CandidateRepository{
 
 	//Find by _id
 	async findByEmail(email: string) {
-		const candidate = await Candidate.find({ email });
+		const candidate = await Candidate.findOne({ email });
 		return candidate;
 	}
 

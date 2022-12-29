@@ -1,11 +1,11 @@
-import { inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { Types } from 'mongoose';
 import { HttpException } from '../../../core/exception';
 import { TYPES } from '../../../core/inversify/types.di';
 import { CandidateRepository } from '../repository/candidate.repository';
 import { CreateCandidateDto } from '../_dto/create_candidate.dto';
 
-
+@injectable()
 export class CandidateService{
 	constructor(
         @inject(TYPES.CandidateRepository) private readonly candidateRepo: CandidateRepository

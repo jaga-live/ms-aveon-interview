@@ -16,7 +16,7 @@ export class CreateCandidateDto{
 		const schema = Joi.object({
 			name: Joi.string().required(),
 			email: Joi.string().required(),
-			phone: Joi.string().required(),
+			phone: Joi.number().required(),
 		});
 
 		const validate = schema.validateAsync(dto).catch(err => {
