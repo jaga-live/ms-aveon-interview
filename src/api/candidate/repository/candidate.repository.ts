@@ -20,6 +20,12 @@ export class CandidateRepository{
 		return candidate;
 	}
 
+	///Find by hrId
+	async findByHrId(_id: Types.ObjectId) {
+		const candidate = await Candidate.find({ hrId: _id });
+		return candidate;
+	}
+
 	//Find by _id
 	async findByEmail(email: string) {
 		const candidate = await Candidate.findOne({ email });

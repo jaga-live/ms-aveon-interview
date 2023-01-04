@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { Types } from 'mongoose';
 import { ValidationException } from '../../../core/exception';
 
 export class CreateCandidateDto{
@@ -7,7 +8,7 @@ export class CreateCandidateDto{
         public email: string,
         public phone: number,
         public createdAt?: Date,
-        public hrId?: string,
+        public hrId?: Types.ObjectId,
 	) { }
     
 	static async validate(dto: CreateCandidateDto) {

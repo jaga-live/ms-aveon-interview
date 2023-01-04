@@ -1,5 +1,5 @@
 import { inject } from 'inversify';
-import { controller, httpPost } from 'inversify-express-utils';
+import { controller, httpGet, httpPost } from 'inversify-express-utils';
 import { ApiPath } from 'swagger-express-ts';
 import { Req } from '../../../core/custom_types/custom.types';
 import { TYPES } from '../../../core/inversify/types.di';
@@ -20,7 +20,13 @@ export class CandidateController{
 	async create_candidate(req: Req) {
 		const {userId} = req.userData;
 		const validatePayload = await CreateCandidateDto.validate(req.body);
-
+		
 		return await this.candidateService.create_candidate(validatePayload, userId);
 	}
+
+	@httpGet('', AuthGuard, RolesGuard([ROLES.HR]))
+    async get_candidates(req: Req) {
+    	const { userId } = req.userData;
+    	return await this.candidateService.find_by_hrId(userId);
+    }
 }
