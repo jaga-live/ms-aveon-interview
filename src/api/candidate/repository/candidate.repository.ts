@@ -16,7 +16,7 @@ export class CandidateRepository{
 
 	//Find by _id
 	async findById(_id: Types.ObjectId) {
-		const candidate = await Candidate.find({ _id });
+		const candidate = await Candidate.findOne({ _id });
 		return candidate;
 	}
 

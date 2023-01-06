@@ -6,6 +6,7 @@ import { AuthGuard } from '../../auth/guards/auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { ROLES } from '../../user/enum/roles';
 import { InterviewRoundService } from '../service/interview_round.service';
+import { CreateInterviewRoundDto } from '../_dto/interview_round.dto';
 
 
 @controller('/interview_round')
@@ -16,7 +17,8 @@ export class InterviewRoundController{
 
     @httpPost('', AuthGuard, RolesGuard([ROLES.HR]))
 	async create_rounds(req: Req) {
-		const {userId} = req.userData;
-		return await this.interviewRoundService.create_interview_round(req.body, userId);
+		const { userId } = req.userData;
+		const createPayload =  await CreateInterviewRoundDto.validate(req.body);
+		return await this.interviewRoundService.create_interview_round(createPayload, userId);
 	}
 }
