@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "8974fb4c-e3df-4cc5-a9f7-76df37a87de8",
+		"name": "Aveon - Interview",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13724405"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jaga@mailinator.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Refresh Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-refresh-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg3NTBjNTU4MWU1MjE5YTI5MWY5ODgiLCJzZXNzaW9uSWQiOiI5ZWVjY2YyYi01ODRkLTRhMjctODVlOS1iMDQ1ZTg1OThiNTIiLCJpYXQiOjE2Njk4MTQzMDIsImV4cCI6MTY2OTgxNDQyMn0.-9Db9qmLuij4cz4sWChw5g0FisxV6lG4JUheZ1aSf_8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/auth/token/refresh",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg3NTBjNTU4MWU1MjE5YTI5MWY5ODgiLCJlbWFpbCI6ImFkbWluQG1haWxpbmF0b3IuY29tIiwicm9sZSI6IkFETUlOIiwic2Vzc2lvbklkIjoiMmNmM2EyMjYtZjYzMS00ODIxLThlYjktNzVjMDYxMTYzNWUxIiwiaWF0IjoxNjcyMTIwNjA0LCJleHAiOjE2NzIxMjI0MDR9.xJCdLfeiskMbsgh4vLLNVHm5pOgfARsdumVR-GKFEMw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"jaga\",\r\n    \"email\": \"jaga@mailinator.com\",\r\n    \"role\": \"HR\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/user/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jaga\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User password",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"oldPassword\": \"test1\",\r\n    \"newPassword\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/profile/password",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"profile",
+										"password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg3NTBjNTU4MWU1MjE5YTI5MWY5ODgiLCJlbWFpbCI6ImFkbWluQG1haWxpbmF0b3IuY29tIiwicm9sZSI6IkFETUlOIiwic2Vzc2lvbklkIjoiMmNmM2EyMjYtZjYzMS00ODIxLThlYjktNzVjMDYxMTYzNWUxIiwiaWF0IjoxNjcyMTIwNjA0LCJleHAiOjE2NzIxMjI0MDR9.xJCdLfeiskMbsgh4vLLNVHm5pOgfARsdumVR-GKFEMw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Candidate",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Add candidate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jaga\",\r\n    \"email\": \"test1@mailinator.com\",\r\n    \"phone\": 1234567890\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/candidate",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"candidate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View Candidate (Under HR)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/candidate",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"candidate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzhkZGI1OGE2M2Y2NDliNjZmOWQ5OTQiLCJlbWFpbCI6ImphZ2FAbWFpbGluYXRvci5jb20iLCJyb2xlIjoiSFIiLCJzZXNzaW9uSWQiOiJhZjcxZDhlNS0wMGM1LTRlYTYtOGY4My04YWMwOGM5Yjg4NjIiLCJpYXQiOjE2NzI4MTQyNzMsImV4cCI6MTY3MjgxNjA3M30.BX51wmEIeVS8J7uscvMw8Ef40zfB268URZOkGQDSJzQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Interview Round",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Create Interview Rounds",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"round_type\": \"screening\",\r\n    \"meeting_link\": \"http://meet.google.com/abc-defg-hij\",\r\n    \"date\": \"2023-09-30T18:30:00.000Z\",\r\n    \"candidateId\": \"63ae8d1c5bd8b884cc3d8b0e\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/interview_round",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"interview_round"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzhkZGI1OGE2M2Y2NDliNjZmOWQ5OTQiLCJlbWFpbCI6ImphZ2FAbWFpbGluYXRvci5jb20iLCJyb2xlIjoiSFIiLCJzZXNzaW9uSWQiOiJhNmRjY2MyZS0xMmY5LTRlN2QtOTJjYy02ZWJlYzBjYmY1MDEiLCJpYXQiOjE2NzMwMTQ3NTksImV4cCI6MTY3MzAxNjU1OX0.Ye085EAiZBFM6iElk3ovv3Z3sn1_Rks2Am5lR7vfe_w",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
